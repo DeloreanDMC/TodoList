@@ -1,9 +1,17 @@
 import React from 'react';
 import classes from './InputForm.module.css';
+import {useDispatch} from 'react-redux';
+import { login } from '../../../Redux/ActionCreators/ActionCreators';
+
 
 const InputForm = (props) => {
+    const dispatch = useDispatch();
+    const submitHandler = event => {
+        event.preventDefault();
+        dispatch(login(null,null));
+    }
     return (
-        <form className={classes["form-box"]}>
+        <form className={classes["form-box"]} onSubmit={submitHandler}>
             <div className={classes["inputs"]}>    
                 <div className={classes["plate"]}> 
                     <div className={classes["ico-block"]}>
@@ -24,7 +32,7 @@ const InputForm = (props) => {
                     />
                 </div>
             </div>
-            <button  className={classes["button-log"]}>LOGIN</button>
+            <button className={classes["button-log"]} >LOGIN</button>
         </form>
     )
 };

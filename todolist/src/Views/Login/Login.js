@@ -3,7 +3,7 @@ import classes from './Login.module.css';
 import InputForm from './InputForm/InputForm';
 
 // Страница аутентификации
-const Login = () => {
+const Login = (props) => {
     return (
         <div className={classes["wrapper"]}>
             <div className={classes["login-box"]}>
