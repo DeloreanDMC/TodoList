@@ -2,12 +2,14 @@ import React from 'react';
 import classes from './Layout.module.css';
 import Login from '../../Views/Login/Login';
 import Pages from '../../Views/Pages/Pages';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
-
+import { BrowserRouter, Route, useHistory } from 'react-router-dom';
 import {useSelector} from 'react-redux';
 
-
 const Wellcome = () => {
+  const history = useHistory();
+  if (history.location.pathname!="/") {
+       history.replace("/");
+  }
   const {authorized} = useSelector(state=>state.user);
   return authorized ? <Pages/> : <Login/>;
 }
