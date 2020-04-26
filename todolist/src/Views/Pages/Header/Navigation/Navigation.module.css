@@ -80,7 +80,7 @@
 
 .logout:before {
     position: absolute;
-    content: "By by";
+    content: "Bye bye";
     top: 0;
     left: 0;
     width: 100%;
