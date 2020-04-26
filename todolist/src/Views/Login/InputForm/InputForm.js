@@ -10,6 +10,7 @@ const InputForm = (props) => {
                         <div className={classes["ico-user"]}></div>
                     </div>
                     <input className={classes["input-bty"]}
+                        placeholder={"username"}
                         type={"text"}
                     /> 
                 </div>
@@ -18,7 +19,8 @@ const InputForm = (props) => {
                         <div className={classes["ico-password"]}></div>
                     </div>
                     <input className={classes["input-bty"]}
-                         type={"password"}
+                        placeholder={"password"}   
+                        type={"password"}
                     />
                 </div>
             </div>

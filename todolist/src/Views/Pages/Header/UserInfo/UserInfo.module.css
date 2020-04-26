@@ -1,0 +1,24 @@
+@import "../../../../Assets/Fonts/Schoolbell.css";
+
+.UserInfo {
+    display: flex;
+    width: 80%;
+    height: 6vh;
+    margin: 0 auto;
+    cursor: pointer;
+}
+
+.ico-user {
+    width: 6vh;
+    height: 6vh;
+    background-image: url("../../../../Assets/Images/user_black.svg");
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+
+.user-name{
+    width: 80%;
+    text-align: center;
+    font-family: "Schoolbell";
+    font-size: 5vh;
+}

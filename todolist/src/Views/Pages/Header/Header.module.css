@@ -1,0 +1,20 @@
+@import "../../../Assets/Fonts/RockSalt.css";
+
+.header {
+    width: 24vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: #E2E2E2;
+}
+
+.title {
+    margin-top: 4vh;
+    margin-bottom: 6vh;
+    font-family: "RockSalt";
+    font-size: 6vh;
+    width: 100%;
+    color: #005967;
+    text-align: center;
+    cursor: default;
+}
