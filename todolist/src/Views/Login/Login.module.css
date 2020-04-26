@@ -1,0 +1,28 @@
+@import "../../Assets/Fonts/RockSalt.css";
+
+.wrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-box {
+    display: flex;
+    flex-direction: column;
+    width: 55vh;
+    height: 55vh;
+    box-sizing: border-box;
+    border: 5vh solid #C9C9C9;
+    background-color: #E3E3E3;
+}
+
+.title {
+    width: 100%;
+    color: #005967;
+    text-align: center;
+    font-family: "RockSalt";
+    font-size: 5.5vh;
+}
+

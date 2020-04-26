@@ -1,0 +1,9 @@
+.Layout {
+    width: 100vw;
+    height: 100vh;
+    background-image: url("../../Assets/Images/MainBack.png");
+    background-repeat: round;
+    background-size: 100%;
+    
+    overflow: hidden;
+}
