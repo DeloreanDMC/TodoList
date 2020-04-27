@@ -1,39 +1,37 @@
-import React from 'react';
-import classes from './InputForm.module.css';
+import React, {useState} from 'react';
 import {useDispatch} from 'react-redux';
 import { login } from '../../../Redux/ActionCreators/ActionCreators';
+import LoginForm from '../../../Containers/LoginForm/LoginForm';
 
 
-const InputForm = (props) => {
+// Форма ввода данных аккаунта
+const InputForm = () => {
+    // Хуки логина и пароля
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+    
+    // Логика отправки формы
     const dispatch = useDispatch();
     const submitHandler = event => {
-        event.preventDefault();
-        dispatch(login(null,null));
+        // dispatch(login(null,null));
     }
+    
     return (
-        <form className={classes["form-box"]} onSubmit={submitHandler}>
-            <div className={classes["inputs"]}>    
-                <div className={classes["plate"]}> 
-                    <div className={classes["ico-block"]}>
-                        <div className={classes["ico-user"]}></div>
-                    </div>
-                    <input className={classes["input-bty"]}
-                        placeholder={"username"}
-                        type={"text"}
-                    /> 
-                </div>
-                <div className={classes["plate"]}> 
-                    <div className={classes["ico-block"]}>
-                        <div className={classes["ico-password"]}></div>
-                    </div>
-                    <input className={classes["input-bty"]}
-                        placeholder={"password"}   
-                        type={"password"}
-                    />
-                </div>
-            </div>
-            <button className={classes["button-log"]} >LOGIN</button>
-        </form>
+        <LoginForm onSubmit={submitHandler}>
+            <input 
+                type={'text'}
+                name={'username'} 
+                value={username} 
+                onChange={e=>setUsername(e.target.value)}
+            />
+            <input 
+                type={'password'}
+                name={'password'} 
+                value={password} 
+                onChange={e=>setPassword(e.target.value)}
+            />
+            <button>LOGIN</button>
+        </LoginForm> 
     )
 };
 
