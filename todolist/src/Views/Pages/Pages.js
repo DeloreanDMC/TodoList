@@ -1,7 +1,7 @@
 import React from 'react';
 import classes from './Pages.module.css';
 import Header from './Header/Header';
-import Main from '../../Containers/Main/Main';
+import Main from './Main/Main';
 // Отображение меню и страниц сайта
 // Доступно после аутентификации
 const Pages = (props) => {

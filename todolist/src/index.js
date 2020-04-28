@@ -5,6 +5,7 @@ import Layout from './Containers/Layout/Layout';
 import {Provider} from 'react-redux';
 import storeCreator from './Redux/Store/store';
 
+
 const store = storeCreator();
 
 ReactDOM.render(

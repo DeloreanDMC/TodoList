@@ -1,0 +1,7 @@
+.Main {
+    display: flex;
+    width: 76vw;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
