@@ -1,7 +1,9 @@
 import React, {useState} from 'react';
-import {useDispatch} from 'react-redux';
-import { login } from '../../../Redux/ActionCreators/ActionCreators';
-import LoginForm from '../../../Containers/LoginForm/LoginForm';
+import {useDispatch, useSelector} from 'react-redux';
+import {useHistory} from 'react-router-dom';
+
+import {login} from '../../../Redux/ActionCreators/ActionCreators';
+import AuthForm from '../../../Containers/AuthForm/AuthForm';
 
 
 // Форма ввода данных аккаунта
@@ -10,14 +12,20 @@ const InputForm = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     
+
+
     // Логика отправки формы
     const dispatch = useDispatch();
+   
     const submitHandler = event => {
-        // dispatch(login(null,null));
+        console.log("Данны для отправки");
+        console.log(username,password);
+        dispatch(login(username,password));
     }
     
+
     return (
-        <LoginForm onSubmit={submitHandler}>
+        <AuthForm onSubmit={submitHandler}>
             <input 
                 type={'text'}
                 name={'username'} 
@@ -31,7 +39,7 @@ const InputForm = () => {
                 onChange={e=>setPassword(e.target.value)}
             />
             <button>LOGIN</button>
-        </LoginForm> 
+        </AuthForm> 
     )
 };
 

@@ -5,6 +5,7 @@ import Main from '../../Containers/Main/Main';
 // Отображение меню и страниц сайта
 // Доступно после аутентификации
 const Pages = (props) => {
+
     return (
         <div className={classes["Pages"]}>
             <Header/>

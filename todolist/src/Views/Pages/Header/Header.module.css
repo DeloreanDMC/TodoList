@@ -1,7 +1,7 @@
 @import "../../../Assets/Fonts/RockSalt.css";
 
 .header {
-    width: 24vw;
+    width: 26vw;
     height: 100vh;
     display: flex;
     flex-direction: column;
