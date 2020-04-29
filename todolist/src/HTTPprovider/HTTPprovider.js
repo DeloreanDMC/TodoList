@@ -2,36 +2,33 @@ import axios from 'axios';
 
 const instance = axios.create({
     baseURL: "http://localhost:3000/api/v1",
-    withCredentials: true,
-    headers: {
-        "Access-Control-Allow-Credentials":true,
-    }
+    withCredentials: true
 });
+
+
+// Извлекает необходимые данные из ответа
+function getData(response) {
+    return {
+        data:response.data, 
+        status:response.status
+    }
+}
 
 // Аутентификация пользователя
 export const userLogin = (login,password) => {
     return instance.post("/login", {
         login,
         password
-    }).then(response => {
-        console.log(response);
-        return {
-            data:response.data, 
-            status:response.status
-        }
-    }).catch(error => {
-        console.log(error);    
-        return {
-            data:error.response.data,
-            status:error.response.status
-        }
-    });
+    }).then(getData)
 };
 
 // Выйти из аккаунта
 export const userLogout = () => {
-    return instance.post("/logout")
-           .then(response=>{
-               console.log(response);
-           })
+    return instance.post("/logout");
 };
+
+// Загрузить данные о пользователе
+export const getUserDate = () => {
+    return instance.get("/me")
+    .then(getData)
+}

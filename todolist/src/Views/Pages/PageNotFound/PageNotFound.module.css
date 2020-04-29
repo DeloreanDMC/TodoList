@@ -1,0 +1,16 @@
+@import "../../../Assets/Fonts/ShadowsIntoLight.css";
+
+
+.sad {
+    margin: 0 auto;
+    background-image: url("../../../Assets/Images/pagenotfound.svg");
+    background-repeat: no-repeat;
+    width: 30vh;
+    height: 30vh;
+}
+
+.title {
+    color: white;
+    font-size: 15vh;
+    font-family: "ShadowsIntoLight";
+}

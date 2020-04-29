@@ -3,7 +3,8 @@ import classes from './Header.module.css';
 import UserInfo from './UserInfo/UserInfo';
 import Navigation from './Navigation/Navigation';
 
-const Header = (props) => {
+// Навигационное меню
+const Header = () => {
     return (
         <div className={classes["header"]}>
             <div className={classes["title"]}>Busy List</div>

@@ -24,7 +24,7 @@ const getFromChildren = (children, options) => {
 }
 
 // Красивая обертка для формы ввода
-const AuthForm = ({children,onSubmit}) => {
+const AuthForm = ({children,onSubmit,error}) => {
     
     // Если ничего не передали - значит нечего оборачивать
     if (!children) return <div></div>;
@@ -75,6 +75,9 @@ const AuthForm = ({children,onSubmit}) => {
                     </div>
                     {inputPassword}
                 </div>
+            </div>
+            <div className={classes["error-message"]}>
+                {error}
             </div>
             {buttonLogin}
         </form>

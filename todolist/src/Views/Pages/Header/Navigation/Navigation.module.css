@@ -14,8 +14,8 @@
 
 .active-link {
     position: relative;
-    background-color: #005967;
-    color: #FFFFFF;
+    background-color: #005967!important;
+    color: #FFFFFF!important;
     width: 80%;
     height: 7vh;
     font-size: 5vh;
@@ -29,6 +29,7 @@
 }
 
 .simple-link {
+    text-decoration: none;
     position: relative;
     background-color: #C9C9C9;
     color: #001A1A;

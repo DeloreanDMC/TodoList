@@ -1,9 +1,7 @@
 import React, {useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {useHistory} from 'react-router-dom';
-
 import {login} from '../../../Redux/ActionCreators/ActionCreators';
-import AuthForm from '../../../Containers/AuthForm/AuthForm';
+import AuthForm from '../../Components/AuthForm/AuthForm';
 
 
 // Форма ввода данных аккаунта
@@ -12,7 +10,8 @@ const InputForm = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     
-
+    const errorMessage = useSelector(state=>state.app.alert);
+    
 
     // Логика отправки формы
     const dispatch = useDispatch();
@@ -23,19 +22,20 @@ const InputForm = () => {
         dispatch(login(username,password));
     }
     
-
     return (
-        <AuthForm onSubmit={submitHandler}>
+        <AuthForm onSubmit={submitHandler} error={errorMessage} >
             <input 
                 type={'text'}
                 name={'username'} 
                 value={username} 
+                required={true}
                 onChange={e=>setUsername(e.target.value)}
             />
             <input 
                 type={'password'}
                 name={'password'} 
                 value={password} 
+                required={true}
                 onChange={e=>setPassword(e.target.value)}
             />
             <button>LOGIN</button>

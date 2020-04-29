@@ -1,5 +1,5 @@
-import {LOGIN, LOGOUT, SHOW_LOADER, HIDE_LOADER} from '../Constants/types';
-import {userLogin,userLogout} from '../../HTTPprovider/HTTPprovider';
+import {LOGIN, LOGOUT, SHOW_LOADER, HIDE_LOADER, SHOW_ALERT, HIDE_ALERT, GET_ME} from '../Constants/types';
+import {userLogin,userLogout, getUserDate} from '../../HTTPprovider/HTTPprovider';
 
 // Создает действие авторизации
 export function login(username,password) {
@@ -7,7 +7,7 @@ export function login(username,password) {
         dispatch(showLoader());
         userLogin(username,password)
         .then(({data}) => {
-            console.log('ACTION CREATOR');
+            console.log("ACTION CREATOR");
             console.log(data);
             dispatch({
                 type:LOGIN,
@@ -15,7 +15,20 @@ export function login(username,password) {
                 role:data.role
             })
             dispatch(hideLoader());
+            dispatch(hideAlert());
         })
+        .catch(e=>{
+            const status = 
+                e.response 
+                ?   e.response.data 
+                    ?   e.response.data.message
+                    :   e.response.statusText
+                :   "SERVER ERROR"
+                ;
+            dispatch(hideLoader());
+            dispatch(showAlert(status))
+        })
+       
     }
 }
 
@@ -28,6 +41,32 @@ export function logout() {
             dispatch({type:LOGOUT})
             dispatch(hideLoader())
         })
+    }
+}
+
+// Выход без отправки собщения серверу
+export function logoutOfline() {
+    return {type:LOGOUT};
+}
+
+// Загрузить данные о пользователе с сайта
+export function updateUserDate() {
+    return dispatch => {
+       
+        getUserDate()
+        .then(({data})=>{
+            dispatch({
+                type:GET_ME,
+                username: data.name,
+                role: data.role
+            });
+        })
+        .catch(e=>{
+            const status = (e.response && e.response.status) 
+                            || 500;
+            if (status===401) dispatch(logoutOfline());
+            
+        });
     }
 }
 
@@ -44,3 +83,20 @@ export function hideLoader() {
         type: HIDE_LOADER
     }
 };
+
+// Отобразить сообщение
+export function showAlert(text) {
+    return dispatch => { 
+        dispatch({
+            type:SHOW_ALERT,
+            payload:text
+        })
+    }   
+}
+
+// Спрятать сообщение
+export function hideAlert() {
+    return {
+        type:HIDE_ALERT
+    }
+}
