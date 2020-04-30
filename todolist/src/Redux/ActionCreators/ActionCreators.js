@@ -1,102 +1,77 @@
-import {LOGIN, LOGOUT, SHOW_LOADER, HIDE_LOADER, SHOW_ALERT, HIDE_ALERT, GET_ME} from '../Constants/types';
-import {userLogin,userLogout, getUserDate} from '../../HTTPprovider/HTTPprovider';
-
+import {LOGIN, LOGOUT, SHOW_LOADER, HIDE_LOADER, SHOW_ALERT, HIDE_ALERT, GET_ME, REQUEST_LOGIN, REQUEST_LOGOUT,REQUEST_GET_ME} from '../Constants/types';
 // Создает действие авторизации
 export function login(username,password) {
-    return async dispatch => {
-        dispatch(showLoader());
-        userLogin(username,password)
-        .then(({data}) => {
-            console.log("ACTION CREATOR");
-            console.log(data);
-            dispatch({
-                type:LOGIN,
-                username:data.name,
-                role:data.role
-            })
-            dispatch(hideLoader());
-            dispatch(hideAlert());
-        })
-        .catch(e=>{
-            const status = 
-                e.response 
-                ?   e.response.data 
-                    ?   e.response.data.message
-                    :   e.response.statusText
-                :   "SERVER ERROR"
-                ;
-            dispatch(hideLoader());
-            dispatch(showAlert(status))
-        })
-       
-    }
+    return {
+        type: REQUEST_LOGIN,
+        username,
+        password
+    };
+}
+
+// Установить загруженны данные о пользователе
+export function authed(username,role) {
+    return {
+        type:LOGIN,
+        username,
+        role
+    };
 }
 
 // Создает действие выхода из аккаунта
 export function logout() {
-    return async dispatch => {
-        dispatch(showLoader());
-        userLogout()
-        .finally(()=> {
-            dispatch({type:LOGOUT})
-            dispatch(hideLoader())
-        })
-    }
+   return {
+       type: REQUEST_LOGOUT
+   };
 }
 
 // Выход без отправки собщения серверу
 export function logoutOfline() {
-    return {type:LOGOUT};
+    return { 
+        type:LOGOUT
+    };
 }
 
 // Загрузить данные о пользователе с сайта
 export function updateUserDate() {
-    return dispatch => {
-       
-        getUserDate()
-        .then(({data})=>{
-            dispatch({
-                type:GET_ME,
-                username: data.name,
-                role: data.role
-            });
-        })
-        .catch(e=>{
-            const status = (e.response && e.response.status) 
-                            || 500;
-            if (status===401) dispatch(logoutOfline());
-            
-        });
-    }
+    return {
+        type:REQUEST_GET_ME
+    };
+}
+
+// Обновить данны о пользователе в хранилище
+export function getMe(username,role) {
+    return {
+        type:GET_ME,
+        username,
+        role
+    };
 }
 
 // Показать загрузку
 export function showLoader() {
     return {
         type: SHOW_LOADER
-    }
+    };
 }
 
 // Скрыть загрузку
 export function hideLoader() {
     return {
         type: HIDE_LOADER
-    }
+    };
 };
 
 // Отобразить сообщение
 export function showAlert(text) {
-    return dispatch => { 
-        dispatch({
+    return {
             type:SHOW_ALERT,
             payload:text
-        })
-    }   
+    };
 }
 
 // Спрятать сообщение
 export function hideAlert() {
     return {
         type:HIDE_ALERT
-    }
+    };
 }

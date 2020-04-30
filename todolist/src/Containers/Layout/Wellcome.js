@@ -3,7 +3,7 @@ import {Switch, Route, Redirect } from 'react-router-dom';
 import {useSelector, useDispatch} from 'react-redux';
 import Login from '../../Views/Login/Login';
 import Pages from '../../Views/Pages/Pages';
-import { updateUserDate, logout } from '../../Redux/ActionCreators/ActionCreators';
+import { updateUserDate} from '../../Redux/ActionCreators/ActionCreators';
 
 // Описывает логику входа на сайт
 const Wellcome = () => {

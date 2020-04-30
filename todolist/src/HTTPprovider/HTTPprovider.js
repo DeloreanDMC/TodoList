@@ -24,7 +24,8 @@ export const userLogin = (login,password) => {
 
 // Выйти из аккаунта
 export const userLogout = () => {
-    return instance.post("/logout");
+    return instance.post("/logout")
+           .catch(e=>e);
 };
 
 // Загрузить данные о пользователе
