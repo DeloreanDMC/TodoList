@@ -13,44 +13,25 @@ const propsReducer = (jsxElem, newProps) => {
     }
 };
 
-// Фильтрует массив из дочерних элементов по определенному критерию
-const getFromChildren = (children, options) => {
-    return children.filter(el => {
-        return Object.entries(options)
-               .every(par => {
-                   return el[par[0]] === par[1];
-               }) 
-    })
-}
-
 // Красивая обертка для формы ввода
-const AuthForm = ({children,onSubmit,error}) => {
+const AuthForm = ({input,onSubmit,error}) => {
     
     // Если ничего не передали - значит нечего оборачивать
-    if (!children) return <div></div>;
-
-    /* Поля ввода */
-    const inputs = getFromChildren(children,{
-        type:"input"
-    });
+    if (!input) return null;
+    
     // Ввод логина
-    const inputLogin = propsReducer(inputs[0],{
+    const inputLogin = propsReducer(input.inputLogin,{
         className:classes["input-bty"],
-        placeholder:inputs[0].props.name || "login"
+        placeholder:input.inputLogin.props.name || "login"
     });
     // Вввод пароля
-    const inputPassword = propsReducer(inputs[1],{
+    const inputPassword = propsReducer(input.inputPassword,{
         className:classes["input-bty"],
-        placeholder:inputs[1].props.name || "password"
+        placeholder:input.inputPassword.props.name || "password"
     });
   
-    /* Конопки */
-    const buttons = getFromChildren(children, {
-        type:"button"
-    });
-
     // Кнопка submit
-    const buttonLogin = propsReducer(buttons[0], {
+    const buttonLogin = propsReducer(input.buttonLogin, {
         className:classes["button-log"],
     });
 

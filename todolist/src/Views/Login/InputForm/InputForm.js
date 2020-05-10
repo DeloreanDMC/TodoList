@@ -1,45 +1,38 @@
-import React, {useState} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
-import {login} from '../../../Redux/ActionCreators/ActionCreators';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import AuthForm from '../../Components/AuthForm/AuthForm';
-
+import { getLoginInput, getAlert } from '../../../Redux/Selectors/Selectors';
+import { useAuth } from '../../../Redux/Dispatches/Dispatches';
 
 // Форма ввода данных аккаунта
 const InputForm = () => {
-    // Хуки логина и пароля
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
-    
-    const errorMessage = useSelector(state=>state.app.alert);
-    
-
-    // Логика отправки формы
-    const dispatch = useDispatch();
-   
-    const submitHandler = event => {
-        console.log("Данны для отправки");
-        console.log(username,password);
-        dispatch(login(username,password));
-    }
+    const {username, password} = useSelector(getLoginInput);
+    const errorMessage = useSelector(getAlert);
+    const {auth, usernameSetter, passwordSetter} = useAuth();
+    const submitHandler = () => auth(username, password);
     
     return (
-        <AuthForm onSubmit={submitHandler} error={errorMessage} >
+        <AuthForm onSubmit={submitHandler} error={errorMessage} 
+            input={{
+            inputLogin:
             <input 
                 type={'text'}
                 name={'username'} 
                 value={username} 
                 required={true}
-                onChange={e=>setUsername(e.target.value)}
-            />
+                onChange={e=>usernameSetter(e.target.value)}
+            />,
+            inputPassword:
             <input 
                 type={'password'}
                 name={'password'} 
                 value={password} 
                 required={true}
-                onChange={e=>setPassword(e.target.value)}
-            />
-            <button>LOGIN</button>
-        </AuthForm> 
+                onChange={e=>passwordSetter(e.target.value)}
+            />,
+            buttonLogin:
+            <button>LOGIN</button>}}
+        />
     )
 };
 

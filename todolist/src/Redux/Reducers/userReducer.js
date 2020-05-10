@@ -1,4 +1,4 @@
-import { LOGIN, LOGOUT, GET_ME } from "../Constants/types";
+import { AUTH, CLOSE, SET_ME } from "../Constants/types";
 
 // Данные о пользователе по умолчанию
 const initialUser = (()=>{
@@ -19,18 +19,18 @@ const initialUser = (()=>{
 // Преобразователь данных пользователя
 export const userReducer = (state = initialUser, action) => {
     switch(action.type) {
-        case LOGIN: return {
+        case AUTH: return {
             ...state,
             name: action.username,
             role:     action.role,
             authorized: true,
             needUpdate:false
         };
-        case LOGOUT: return {
+        case CLOSE: return {
             ...state,
             authorized: false
         };
-        case GET_ME: return {
+        case SET_ME: return {
             ...state,
             needUpdate:false,
             name: action.username,

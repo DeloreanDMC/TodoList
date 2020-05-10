@@ -1,9 +1,10 @@
 import React from 'react';
 import classes from './HomePage.module.css';
 import {useSelector} from 'react-redux';
+import { getName } from '../../../Redux/Selectors/Selectors';
 
 const HomePage = () => {
-    const username = useSelector(state=>state.user.name);
+    const username = useSelector(getName);
     return (
         <div className={classes["HomePage"]}>
             <div className={classes["title"]}>

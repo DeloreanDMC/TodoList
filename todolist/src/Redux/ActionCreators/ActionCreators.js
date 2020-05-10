@@ -1,8 +1,8 @@
-import {LOGIN, LOGOUT, SHOW_LOADER, HIDE_LOADER, SHOW_ALERT, HIDE_ALERT, GET_ME, REQUEST_LOGIN, REQUEST_LOGOUT,REQUEST_GET_ME} from '../Constants/types';
+import {LOGIN,CLOSE, LOGOUT,AUTH, SET_PASSWORD,INIT_AUTH, SHOW_LOADER, SET_USERNAME, HIDE_LOADER, SHOW_ALERT, HIDE_ALERT, SET_ME,GET_ME} from '../Constants/types';
 // Создает действие авторизации
 export function login(username,password) {
     return {
-        type: REQUEST_LOGIN,
+        type: LOGIN,
         username,
         password
     };
@@ -11,7 +11,7 @@ export function login(username,password) {
 // Установить загруженны данные о пользователе
 export function authed(username,role) {
     return {
-        type:LOGIN,
+        type:AUTH,
         username,
         role
     };
@@ -20,28 +20,28 @@ export function authed(username,role) {
 // Создает действие выхода из аккаунта
 export function logout() {
    return {
-       type: REQUEST_LOGOUT
+       type: LOGOUT
    };
 }
 
 // Выход без отправки собщения серверу
 export function logoutOfline() {
     return { 
-        type:LOGOUT
+        type:CLOSE
     };
 }
 
 // Загрузить данные о пользователе с сайта
 export function updateUserDate() {
     return {
-        type:REQUEST_GET_ME
+        type:GET_ME
     };
 }
 
 // Обновить данны о пользователе в хранилище
 export function getMe(username,role) {
     return {
-        type:GET_ME,
+        type:SET_ME,
         username,
         role
     };
@@ -74,4 +74,24 @@ export function hideAlert() {
     return {
         type:HIDE_ALERT
     };
+}
+
+export function setUsername(username) {
+    return { 
+        type: SET_USERNAME,
+        payload:username
+    }
+}
+
+export function setPassword(password) {
+    return {
+        type:SET_PASSWORD,
+        payload:password
+    }
+}
+
+export function initAuth() {
+    return {
+        type:INIT_AUTH
+    }
 }

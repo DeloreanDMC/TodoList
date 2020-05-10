@@ -8,6 +8,8 @@ const instance = axios.create({
 
 // Извлекает необходимые данные из ответа
 function getData(response) {
+    console.log("get data:");
+    console.log(response);
     return {
         data:response.data, 
         status:response.status

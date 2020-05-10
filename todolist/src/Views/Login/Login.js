@@ -3,10 +3,11 @@ import classes from './Login.module.css';
 import InputForm from './InputForm/InputForm';
 import Loader from '../Components/Loaders/Loader/Loader';
 import { useSelector } from 'react-redux';
+import { getLoading } from '../../Redux/Selectors/Selectors';
 
 // Страница аутентификации
 const Login = () => {
-    const loading = useSelector(state=>state.app.loading);
+    const loading = useSelector(getLoading);
 
     if (loading) {
         return <Loader/>
