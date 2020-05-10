@@ -35,3 +35,9 @@ export const getUserDate = () => {
     return instance.get("/me")
     .then(getData)
 }
+
+// Загрузить список задач
+export const getTodos = () => {
+    return instance.get('/todos')
+    .then(getData);
+}

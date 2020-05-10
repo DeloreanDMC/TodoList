@@ -1,0 +1,14 @@
+@import "../../../Assets/Fonts/Schoolbell.css";
+
+.button {
+    margin: 0 auto;
+    margin-top: 3vh;
+    background-color: #028790;
+    color: #ffffff;
+    padding:0.5vh 5vh;
+    text-align: center;
+    font-size: 5vh;
+    cursor: pointer;
+    font-family: "Schoolbell";
+    border-radius: 10px;
+}

@@ -1,0 +1,11 @@
+.ListBox {
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 1vh;
+    height: 35vh;
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+    scroll-behavior: smooth;
+}
+

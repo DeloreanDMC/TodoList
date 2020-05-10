@@ -8,7 +8,7 @@ const HomePage = () => {
     return (
         <div className={classes["HomePage"]}>
             <div className={classes["title"]}>
-                <div>Home Page</div>
+                <div>Home page</div>
             </div>
             <div className={classes["section"]}>
                 <div>Welcome {username}</div>

@@ -22,9 +22,12 @@ const Navigation = () => {
                 >
                     Home page
                 </NavLink>
-                <div className={classes["simple-link"]}>
+                <NavLink  className={classes["simple-link"]}
+                    activeClassName={classes["active-link"]}
+                    to="/todos"    
+                >
                     Todo List
-                </div>
+                </NavLink>
             </div>
             {loading?<NavigationLoader/>:null}
             <div className={classes["logout"]} onClick={onLogout}>

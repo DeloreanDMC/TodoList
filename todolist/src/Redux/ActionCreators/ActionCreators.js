@@ -1,4 +1,4 @@
-import {LOGIN,CLOSE, LOGOUT,AUTH, SET_PASSWORD,INIT_AUTH, SHOW_LOADER, SET_USERNAME, HIDE_LOADER, SHOW_ALERT, HIDE_ALERT, SET_ME,GET_ME} from '../Constants/types';
+import {LOGIN, CLOSE, SET_TODOS, GET_TODOS ,LOGOUT,AUTH, SET_PASSWORD,INIT_AUTH, SHOW_LOADER, SET_USERNAME, HIDE_LOADER, SHOW_ALERT, HIDE_ALERT, SET_ME,GET_ME} from '../Constants/types';
 // Создает действие авторизации
 export function login(username,password) {
     return {
@@ -76,6 +76,7 @@ export function hideAlert() {
     };
 }
 
+// Установить имя пользователя
 export function setUsername(username) {
     return { 
         type: SET_USERNAME,
@@ -83,6 +84,7 @@ export function setUsername(username) {
     }
 }
 
+// Установить пароль
 export function setPassword(password) {
     return {
         type:SET_PASSWORD,
@@ -90,8 +92,23 @@ export function setPassword(password) {
     }
 }
 
+// Сбросить введенные данные
 export function initAuth() {
     return {
         type:INIT_AUTH
+    }
+}
+
+// Загрузить список задач
+export function getTodos() {
+    return {
+        type: GET_TODOS
+    }
+}
+
+// Сохранить в хранилище данные о задачах
+export function setTodos() {
+    return { 
+        type: SET_TODOS 
     }
 }
