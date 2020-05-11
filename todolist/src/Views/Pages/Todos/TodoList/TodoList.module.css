@@ -1,11 +1,55 @@
+@import "../../../../Assets/Fonts/Schoolbell.css";
+
+
 .ListBox {
     width: 80%;
     margin: 0 auto;
     margin-top: 1vh;
-    height: 35vh;
+    height: 47vh;
     display: flex;
     flex-direction: column;
-    overflow: auto;
     scroll-behavior: smooth;
 }
 
+.only-me {
+    margin-top: 3vh;
+    display: flex;
+    justify-content: center;
+}
+
+.check {
+    width:4.4vh;
+    height:4.4vh;
+    position: relative;
+}
+
+.check:before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    content: "";
+    width:100%;
+    height: 100%;
+    border-radius: 3px;
+}
+
+.check:checked:before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    content: "";
+    width:100%;
+    height: 100%;
+    z-index:999;
+    background-image: url("../../../../Assets/Images/check.svg");
+    width: 4.4vh;
+    height: 4.4vh;
+   
+}
+
+
+.label {
+    margin-left: 1vh;
+    font-size: 4vh;
+    font-family: "Schoolbell";
+}
