@@ -41,3 +41,20 @@ export const getTodos = () => {
     return instance.get('/todos')
     .then(getData);
 }
+
+// Создать новое задание
+export const postTodo = (task) => {
+    return instance.post('/todos',task)
+    .then(getData);
+}
+
+// Удалить задачу
+export const deleteTodo = (id) => {
+    return instance.delete('/todos/'+id);
+}
+
+// Изменить задачу
+export const putTodo = (id,data) => {
+    console.log("отправил на сервер:id="+id,"data = ",data);
+    return instance.put('/todos/'+id,data).then(res=>console.log("put response =",res));
+}

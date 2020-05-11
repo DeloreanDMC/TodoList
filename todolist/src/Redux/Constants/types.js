@@ -8,6 +8,11 @@ export const GET_ME = "USER/GET_ME";
 
 export const GET_TODOS = "TODO/GET_TODOS";
 export const SET_TODOS = "TODO/SET_TODOS";
+export const FILTER_ME = "TODO/FILTER_ME";
+export const CHANGE_TASK = "TODO/CHANGE_TASK";
+export const CREATE_TASK = "TODO/CREATE_TASK";
+export const POST_TASK = "TODO/POST_TASK";
+export const DELETE_TASK = "TODO/DELETE_TASK";
 
 export const SHOW_LOADER = "APP/SHOW_LOADER";
 export const HIDE_LOADER = "APP/HIDE_LOADER";

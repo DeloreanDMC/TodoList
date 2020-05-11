@@ -1,4 +1,4 @@
-import {LOGIN, CLOSE, SET_TODOS, GET_TODOS ,LOGOUT,AUTH, SET_PASSWORD,INIT_AUTH, SHOW_LOADER, SET_USERNAME, HIDE_LOADER, SHOW_ALERT, HIDE_ALERT, SET_ME,GET_ME} from '../Constants/types';
+import {LOGIN, CLOSE, SET_TODOS, POST_TASK, GET_TODOS ,LOGOUT,AUTH, SET_PASSWORD,INIT_AUTH, SHOW_LOADER, SET_USERNAME, HIDE_LOADER, SHOW_ALERT, HIDE_ALERT, SET_ME,GET_ME, FILTER_ME, CHANGE_TASK, CREATE_TASK, DELETE_TASK} from '../Constants/types';
 // Создает действие авторизации
 export function login(username,password) {
     return {
@@ -100,15 +100,55 @@ export function initAuth() {
 }
 
 // Загрузить список задач
-export function getTodos() {
+export function getTodosAction() {
     return {
         type: GET_TODOS
     }
 }
 
 // Сохранить в хранилище данные о задачах
-export function setTodos() {
+export function setTodos(data) {
     return { 
-        type: SET_TODOS 
+        type: SET_TODOS,
+        payload:data
+    }
+}
+
+// Включить-выключить фильтр заданий по создателю задания
+export function filterMe() {
+    return {
+        type: FILTER_ME
+    }
+}
+
+// Изменить определенное задание
+export function changeTaskAction(id,newdata) {
+    return {
+        type:CHANGE_TASK,
+        id,
+        newdata
+    }
+};
+
+// Сохранить данные о задании в хранилище
+export function createTask(task) {
+    return {
+        type: CREATE_TASK,
+        payload: task
+    }
+}
+
+// Отправить запрос на создание задания
+export function postTask(task) {
+    return {
+        type: POST_TASK,
+        body:task
+    }
+}
+
+export function deleteTask(id) {
+    return {
+        type: DELETE_TASK,
+        id
     }
 }

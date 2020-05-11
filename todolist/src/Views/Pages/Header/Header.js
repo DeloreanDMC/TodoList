@@ -5,6 +5,7 @@ import Navigation from './Navigation/Navigation';
 
 // Навигационное меню
 const Header = () => {
+    
     return (
         <div className={classes["header"]}>
             <div className={classes["title"]}>Busy List</div>

@@ -2,6 +2,7 @@
 
 .button {
     margin: 0 auto;
+    text-decoration: none;
     margin-top: 3vh;
     background-color: #028790;
     color: #ffffff;
@@ -11,4 +12,22 @@
     cursor: pointer;
     font-family: "Schoolbell";
     border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+}
+
+.button:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 20px;
+    width: 100%;
+    background-color:#FFFFFF;
+    transition: all 0.6s;
+    transform: translateX(-100%) rotate(45deg);
+}
+
+.button:hover:before {
+    transform: translateX(100%) rotate(45deg) ;
 }
