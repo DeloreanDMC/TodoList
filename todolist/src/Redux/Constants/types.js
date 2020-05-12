@@ -21,3 +21,6 @@ export const HIDE_ALERT  = "APP/HIDE_ALER";
 export const SET_USERNAME = "APP/SET_USERNAME";
 export const SET_PASSWORD = "APP/SET_PASSWORD";
 export const INIT_AUTH = "APP/INIT_AUTH";
+
+export const SET_USERS = "SUPER_USER/SET_USERS";
+export const LOAD_USERS = "SUPER_USER/LOAD_USERS";

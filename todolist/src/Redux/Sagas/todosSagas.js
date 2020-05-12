@@ -10,9 +10,10 @@ export function* sagaGetTodos() {
     const {array} = yield select(getTodosSelect);
     if (array.length===0) {
         yield put(showLoader());
+    } else {
+        return
     }
     const {data} = yield call(getTodos);
-    data.sort((a)=>a.description!=="done"?-1:1);
     yield put(setTodos(data))
     yield put(hideLoader());
 }

@@ -16,6 +16,7 @@ const CrudComponent = ({view,id})=>{
     const submit = ()=>dispatch(postTask({title, description}));
 
     const putTask = ()=>dispatch(changeTaskAction(+id,{title, description})) ;
+   
 
     const action = view==="Create" ? submit : putTask;
     return (
@@ -33,22 +34,25 @@ const CrudComponent = ({view,id})=>{
                             Title
                         </div>
                         <textarea 
+                            required={true}
                             className={classes["text-area"]} 
                             value={title} 
-                            onChange={e=>setTitle(e.target.value)}/>
+                            onChange={e=>setTitle(e.target.value)}
+                        />
                     </div>
                     <div className={classes["desc-input"]}>
                         <div className={classes["field-name"]}>
                             Description
                         </div>
                         <textarea 
+                            required={true}
                             className={classes["big-text-area"]}
                             value={description}
                             onChange={e=>setDesc(e.target.value)}
-                            />
+                        />
                     </div>
                     <div className={classes["buttons"]}>
-                        <Button title={view} navTo="/todos" onClick={action}/>
+                        <Button title={view} navTo="/todos" onClick={action}/>    
                         <Button title={"Cancel"} navTo="/todos"/>
                     </div>
                 </div>

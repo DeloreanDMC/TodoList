@@ -1,0 +1,31 @@
+.Users {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    height: 80%;
+    background-color: #E2E2E2;
+    border-radius: 68px;
+}
+
+.title {
+    height: 23%;
+    background-color: #005967;
+    border-top-left-radius: 68px;
+    border-top-right-radius: 68px;
+    font-size: 7vh;
+    font-family: "ShadowsIntoLight";
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #FFFFFF;
+}
+
+.ListBox {
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 1vh;
+    height: 47vh;
+    display: flex;
+    flex-direction: column;
+    scroll-behavior: smooth;
+}

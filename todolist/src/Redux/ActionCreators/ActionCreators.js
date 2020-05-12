@@ -1,4 +1,4 @@
-import {LOGIN, CLOSE, SET_TODOS, POST_TASK, GET_TODOS ,LOGOUT,AUTH, SET_PASSWORD,INIT_AUTH, SHOW_LOADER, SET_USERNAME, HIDE_LOADER, SHOW_ALERT, HIDE_ALERT, SET_ME,GET_ME, FILTER_ME, CHANGE_TASK, CREATE_TASK, DELETE_TASK} from '../Constants/types';
+import {LOGIN, CLOSE, SET_TODOS, POST_TASK, GET_TODOS ,LOGOUT,AUTH, SET_PASSWORD,INIT_AUTH, SHOW_LOADER, SET_USERNAME, HIDE_LOADER, SHOW_ALERT, HIDE_ALERT, SET_ME,GET_ME, FILTER_ME, CHANGE_TASK, CREATE_TASK, DELETE_TASK, LOAD_USERS, SET_USERS} from '../Constants/types';
 // Создает действие авторизации
 export function login(username,password) {
     return {
@@ -146,9 +146,25 @@ export function postTask(task) {
     }
 }
 
+// Удалить задачу
 export function deleteTask(id) {
     return {
         type: DELETE_TASK,
         id
+    }
+}
+
+// Загрузить пользователей
+export function fetchUsers() {
+    return {
+        type: LOAD_USERS
+    }
+}
+
+// Сохранить данные о пользователях
+export function saveUsers(data) {
+    return {
+        type: SET_USERS,
+        payload:data
     }
 }

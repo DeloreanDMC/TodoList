@@ -1,8 +1,6 @@
 import { SET_TODOS, FILTER_ME,CREATE_TASK, CHANGE_TASK, DELETE_TASK } from "../Constants/types";
 
 const initialState = {
-    // array:[{id:1,title:"Get bread",description:"lalal",createdBy:"user"},
-    // {id:2,title:"kektor",description:"lalal",createdBy:"SUPERUSER"}],
     array:[],
     filter:null
 };

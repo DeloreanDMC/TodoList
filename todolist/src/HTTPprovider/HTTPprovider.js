@@ -55,6 +55,11 @@ export const deleteTodo = (id) => {
 
 // Изменить задачу
 export const putTodo = (id,data) => {
-    console.log("отправил на сервер:id="+id,"data = ",data);
-    return instance.put('/todos/'+id,data).then(res=>console.log("put response =",res));
+    return instance.put('/todos/'+id,data);
+}
+
+// ПОлучить всех пользователей
+export const getUsers = () => {
+    return instance.get('/users')
+    .then(getData)
 }

@@ -108,3 +108,12 @@
     display: flex;
     margin-top: -1vh;
 }
+
+.submit {
+    position: relative;
+    left: -30vh;
+    width: 15vw;
+    background-color: Transparent;
+  
+    opacity: 0;
+}

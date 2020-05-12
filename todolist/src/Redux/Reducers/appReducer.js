@@ -1,7 +1,8 @@
-import { SHOW_LOADER, SET_PASSWORD, INIT_AUTH, HIDE_LOADER, SHOW_ALERT, HIDE_ALERT, SET_USERNAME } from "../Constants/types";
+import { SHOW_LOADER,SET_USERS, SET_PASSWORD, INIT_AUTH, HIDE_LOADER, SHOW_ALERT, HIDE_ALERT, SET_USERNAME } from "../Constants/types";
 
 const initialState = {
     loading: false,
+    users:[],
     loginInput: {
         username:"",
         password:""
@@ -48,6 +49,11 @@ export const appReducer = (state = initialState,action) => {
                 password:""
             }
         };
+        case SET_USERS: return {
+            ...state,
+            users:action.payload
+        };
+
         default: return state;
     }
 }
