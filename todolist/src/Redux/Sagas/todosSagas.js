@@ -7,6 +7,7 @@ import { getTodosSelect } from '../Selectors/Selectors';
 
 // Получить список задачик
 export function* sagaGetTodos() {
+    // решать это тут нельзя
     const {array} = yield select(getTodosSelect);
     if (array.length===0) {
         yield put(showLoader());

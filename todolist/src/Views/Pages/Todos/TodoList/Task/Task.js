@@ -14,6 +14,7 @@ const Task = ({task, admin}) => {
     const taskBox = "task-box" + (isdone?"-done":"");
     const dispatch = useDispatch();
 
+    // useCallback переписать
     const doneIt = () => dispatch(changeTaskAction(id,{description:"done", title}));
     const delet = () => dispatch(deleteTask(id));
 

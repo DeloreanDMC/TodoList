@@ -1,5 +1,5 @@
 import { takeEvery } from 'redux-saga/effects';
-import { LOGIN, LOGOUT, GET_ME, GET_TODOS,LOAD_USERS, POST_TASK, DELETE_TASK, CREATE_TASK, CHANGE_TASK } from '../Constants/types';
+import { LOGIN, LOGOUT, GET_ME, GET_TODOS,LOAD_USERS, POST_TASK, DELETE_TASK, CHANGE_TASK } from '../Constants/types';
 
 import { sagaUpdateUser, sagaLoadUsers } from './userSagas';
 import { sagaLogin, sagaLogout } from './authSagas';

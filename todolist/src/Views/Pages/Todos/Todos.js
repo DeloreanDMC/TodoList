@@ -17,7 +17,7 @@ const Todos = () => {
                     <TodoList/>
                 </div>
             </div>
-            <Route path="/todos/create" render={({match})=><CrudComponent view="Create" id={match.params.id} />}/>
+            <Route path="/todos/create" render={()=><CrudComponent view="Create" />}/>
             <Route path="/todos/edit/:id" render={({match})=><CrudComponent view="Edit" id={match.params.id}/>}/>
         </React.Fragment>
     )

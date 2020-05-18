@@ -5,7 +5,6 @@ import { fetchUsers } from '../../../Redux/ActionCreators/ActionCreators';
 import ScrollArea from 'react-scrollbar';
 import User from './User/User';
 import { allUsers, getLoading } from '../../../Redux/Selectors/Selectors';
-import NavigationLoader from '../../Components/Loaders/NavigationLoader/NavigationLoader';
 import Loader from '../../Components/Loaders/Loader/Loader';
 
 const Users = () => {

@@ -17,7 +17,6 @@ const CrudComponent = ({view,id})=>{
 
     const putTask = ()=>dispatch(changeTaskAction(+id,{title, description})) ;
    
-
     const action = view==="Create" ? submit : putTask;
     return (
         <React.Fragment>
