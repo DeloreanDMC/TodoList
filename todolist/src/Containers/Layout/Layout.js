@@ -1,17 +1,17 @@
 import React from 'react';
 import classes from './Layout.module.css';
-import { BrowserRouter} from 'react-router-dom';
 import Wellcome from './Wellcome';
+import ErrorBoundary from './ErrorBoundary';
 
 // Самый нижний слой с фоном
 // Никогда не пропадает
 const Layout = () => {
   return (
-    <BrowserRouter>
-      <div className={classes["Layout"]}>
-        <Wellcome/>
-      </div>
-    </BrowserRouter>
+        <ErrorBoundary>
+          <div className={classes["Layout"]}>
+            <Wellcome/>
+          </div>
+        </ErrorBoundary>
   );
 }
 

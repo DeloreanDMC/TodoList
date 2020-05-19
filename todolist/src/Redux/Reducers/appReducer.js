@@ -6,7 +6,8 @@ const initialState = {
     loginInput: {
         username:"",
         password:""
-    }
+    },
+    error:null
 };
 
 

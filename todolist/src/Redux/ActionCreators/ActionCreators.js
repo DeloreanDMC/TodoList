@@ -1,4 +1,4 @@
-import {LOGIN, CLOSE, SET_TODOS, POST_TASK, GET_TODOS ,LOGOUT,AUTH, SET_PASSWORD,INIT_AUTH, SHOW_LOADER, SET_USERNAME, HIDE_LOADER, SHOW_ALERT, HIDE_ALERT, SET_ME,GET_ME, FILTER_ME, CHANGE_TASK, CREATE_TASK, DELETE_TASK, LOAD_USERS, SET_USERS} from '../Constants/types';
+import {LOGIN, CLOSE, SET_TODOS, POST_TASK, GET_TODOS ,LOGOUT,AUTH, SET_PASSWORD,INIT_AUTH, SHOW_LOADER, SET_USERNAME, HIDE_LOADER, SHOW_ALERT, HIDE_ALERT, SET_ME,GET_ME, FILTER_ME, CHANGE_TASK, CREATE_TASK, DELETE_TASK, LOAD_USERS, SET_USERS, TASK_ERROR, SET_MEM_TASK, PUT_TASK} from '../Constants/types';
 // Создает действие авторизации
 export function login(username,password) {
     return {
@@ -124,11 +124,20 @@ export function filterMe() {
 // Изменить определенное задание
 export function changeTaskAction(id,newdata) {
     return {
-        type:CHANGE_TASK,
+        type:PUT_TASK,
         id,
         newdata
     }
 };
+
+// Установить изменения
+export function setTask(id,newdata) {
+    return {
+        type:CHANGE_TASK,
+        id,
+        newdata
+    }
+}
 
 // Сохранить данные о задании в хранилище
 export function createTask(task) {
@@ -166,5 +175,21 @@ export function saveUsers(data) {
     return {
         type: SET_USERS,
         payload:data
+    }
+}
+
+// Уведомить об ошибке задачи
+export function setTaskError(message,memTask) {
+    return {
+        type:TASK_ERROR,
+        error:{message,memTask}
+    }
+}
+
+// Запомнить введенные пользователем данные
+export function setMemTask(memTask) {
+    return {
+        type:SET_MEM_TASK,
+        memTask
     }
 }

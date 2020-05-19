@@ -1,8 +1,10 @@
-import { SET_TODOS, FILTER_ME,CREATE_TASK, CHANGE_TASK, DELETE_TASK } from "../Constants/types";
+import { SET_TODOS, FILTER_ME,CREATE_TASK, CHANGE_TASK, DELETE_TASK, TASK_ERROR, SET_MEM_TASK } from "../Constants/types";
 
 const initialState = {
+    memTask:null,
     array:[],
-    filter:null
+    filter:null,
+    error:null
 };
 
 export const todosReducer = (state=initialState,action) => {
@@ -27,6 +29,14 @@ export const todosReducer = (state=initialState,action) => {
             ...state,
             array:state.array.filter(el=>+el.id!==+action.id)
         };
+        case TASK_ERROR: return {
+            ...state,
+            error:action.error
+        };
+        case SET_MEM_TASK: return {
+            ...state,
+            memTask: action.memTask
+        }
         default: return state;
     }
 };

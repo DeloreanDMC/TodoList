@@ -11,14 +11,10 @@ export function useTodos() {
     const filter = useSelector(getFilter);
     const array = useSelector(getProcessedArray(filter,admin,username));
 
-
     const dispatch = useDispatch();
-    // Проверка - отправлять не отправлять
-    // Написать свою мидл вару - прверять ндо вызываться или нет
-    // + еще один 
-
-    useEffect(() => {dispatch(getTodosAction());},[dispatch]);
     const setFilter = () => dispatch(filterMe());
     
+    useEffect(() => {dispatch(getTodosAction());},[]);
+
     return {array,admin, setFilter,checked};
 }

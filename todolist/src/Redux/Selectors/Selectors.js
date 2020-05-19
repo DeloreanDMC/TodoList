@@ -9,3 +9,5 @@ export const getRole =        state => state.user.name;
 export const getFilter =      state => state.todos.filter;
 export const isAdmin =        state => state.user.name === "SUPERUSER";
 export const allUsers =       state => state.app.users;
+export const getTaskError =   state => state.todos.error;
+export const getMemTask =     state => state.todos.memTask;

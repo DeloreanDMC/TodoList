@@ -5,17 +5,21 @@ import TodoList from './TodoList/TodoList';
 import { Route } from 'react-router-dom';
 import CrudComponent from './CrudComponent/CrudComponent';
 import Page from '../../Components/Page/Page';
+import { useDispatch } from 'react-redux';
+import { setMemTask } from '../../../Redux/ActionCreators/ActionCreators';
 
 const crudComponent = (view) => {
     return ({match}) => <CrudComponent view={view} id={match.params.id}/>;
 };
 
 const Todos = () => {
+    const dispatch = useDispatch();
+    const clearMem = ()=>dispatch(setMemTask(null));
     return (
         <React.Fragment>
             <Page title={"Todo list"}>
                 <div className={classes["wrapper"]}>
-                    <Button title="Add new task" navTo="/todos/create"/>
+                    <Button title="Add new task" navTo="/todos/create" onClick={clearMem}/>
                     <TodoList/>
                 </div>
             </Page>

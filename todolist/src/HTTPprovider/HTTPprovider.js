@@ -50,12 +50,14 @@ export const postTodo = (task) => {
 
 // Удалить задачу
 export const deleteTodo = (id) => {
-    return instance.delete('/todos/'+id);
+    return instance.delete('/todos/'+id)
+    .then(getData);
 }
 
 // Изменить задачу
 export const putTodo = (id,data) => {
-    return instance.put('/todos/'+id,data);
+    return instance.put('/todos/'+id,data)
+    .then(getData);
 }
 
 // ПОлучить всех пользователей

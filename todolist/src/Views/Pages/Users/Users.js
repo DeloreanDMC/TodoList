@@ -20,7 +20,7 @@ const Users = () => {
                         smoothScrolling={true}
                         style={{paddingRight:"10px"}}
                     >
-                        {users.map(user=><User user={user}/>)} 
+                        {users.map((user,i)=><User user={user} key={i+user.name}/>)} 
                     </ScrollArea>
                 </div>
         </Page>

@@ -2,23 +2,20 @@ import React, { useState, useCallback} from 'react';
 import classes from './CrudComponent.module.css';
 import { NavLink } from 'react-router-dom';
 import Button from '../../../Components/Button/Button';
-import { useDispatch, useSelector, connect } from 'react-redux';
+import { connect } from 'react-redux';
 import { postTask, changeTaskAction } from '../../../../Redux/ActionCreators/ActionCreators';
 import { getTaskById } from '../../../../Redux/Selectors/memSelectors';
-import Page from '../../../Components/Page/Page';
+import { getTaskError, getMemTask } from '../../../../Redux/Selectors/Selectors';
 
-const CrudComponent = ({view,id, getTask, post,put })=>{
-
-    // Все вынести в connect
-    const task = getTask(id);
-
+const CrudComponent = ({view,id, getTask, post, put, memTask})=>{
+    
+    const task = memTask || getTask(id);
+    
     const [title,setTitle] = useState(task && task.title || "");
     const [description, setDesc] = useState(task && task.description || "");
     
-
-
-    const submit = useCallback(()=>post(title, description),[title,description]);
-    const putTask = useCallback( ()=>put(id,title,description),[id, title, description]);
+    const submit  = useCallback(()=>post(title, description),[title,description]);
+    const putTask = useCallback(()=>put(id,title,description),[id, title, description]);
 
    
     const action = view==="Create" ? submit : putTask;
@@ -26,7 +23,6 @@ const CrudComponent = ({view,id, getTask, post,put })=>{
     return (
         <React.Fragment>
             <NavLink to="/todos" className={classes["modal-box"]} >
-            
             </NavLink>
             <div className={classes["title"]}>
                 <div>{view==="Create" ? "Create new task" :"Edit task"}</div>
@@ -67,8 +63,8 @@ const CrudComponent = ({view,id, getTask, post,put })=>{
 
 const mapStateToProps = state => ({
     getTask:(id)=>getTaskById(id)(state),
-    title:"",
-    description:""
+    error: getTaskError(state),
+    memTask: getMemTask(state)
 });
 
 const mapDispatchToProps = dispatch => ({
