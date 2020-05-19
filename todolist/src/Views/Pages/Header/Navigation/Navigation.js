@@ -1,18 +1,15 @@
 import React from 'react';
 import classes from "./Navigation.module.css";
-import {useSelector} from "react-redux";
+import {connect} from "react-redux";
 import NavigationLoader from "../../../Components/Loaders/NavigationLoader/NavigationLoader";
 import { NavLink } from "react-router-dom";
 import { getLoading, isAdmin } from '../../../../Redux/Selectors/Selectors';
-import { useLogout } from '../../../../Redux/Dispatches/Dispatches';
+import { logout } from '../../../../Redux/ActionCreators/ActionCreators';
 
 
 // Навигация по страницам
-const Navigation = () => {
-    const loading =  useSelector(getLoading);
-    const admin = useSelector(isAdmin);
-    const onLogout = useLogout();
-
+const Navigation = ({loading,admin,onLogout}) => {
+ 
     return (
         <nav className={classes["Navigation"]}>
             <div className={classes["links-box"]}>
@@ -50,4 +47,13 @@ const Navigation = () => {
     );
 };
 
-export default Navigation;
+const mapStateToProps = state => ({
+    loading:getLoading(state),
+    admin: isAdmin(state)
+});
+
+const mapDispatchToProps = dispatch => ({
+    onLogout: () => dispatch(logout())
+});
+
+export default connect(mapStateToProps,mapDispatchToProps)(Navigation);

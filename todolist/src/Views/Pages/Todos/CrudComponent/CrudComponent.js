@@ -1,23 +1,28 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback} from 'react';
 import classes from './CrudComponent.module.css';
 import { NavLink } from 'react-router-dom';
 import Button from '../../../Components/Button/Button';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector, connect } from 'react-redux';
 import { postTask, changeTaskAction } from '../../../../Redux/ActionCreators/ActionCreators';
-import { getTaskById } from '../../../../Redux/Selectors/Selectors';
+import { getTaskById } from '../../../../Redux/Selectors/memSelectors';
+import Page from '../../../Components/Page/Page';
 
-const CrudComponent = ({view,id})=>{
+const CrudComponent = ({view,id, getTask, post,put })=>{
 
-    const task = useSelector(getTaskById(id));
-    const dispatch = useDispatch();
+    // Все вынести в connect
+    const task = getTask(id);
+
+    const [title,setTitle] = useState(task && task.title || "");
+    const [description, setDesc] = useState(task && task.description || "");
     
-    const [title,setTitle] = useState(task ? task.title : "");
-    const [description, setDesc] = useState(task ? task.description : "");
-    const submit = ()=>dispatch(postTask({title, description}));
 
-    const putTask = ()=>dispatch(changeTaskAction(+id,{title, description})) ;
+
+    const submit = useCallback(()=>post(title, description),[title,description]);
+    const putTask = useCallback( ()=>put(id,title,description),[id, title, description]);
+
    
     const action = view==="Create" ? submit : putTask;
+
     return (
         <React.Fragment>
             <NavLink to="/todos" className={classes["modal-box"]} >
@@ -60,4 +65,15 @@ const CrudComponent = ({view,id})=>{
     );
 };
 
-export default CrudComponent;
+const mapStateToProps = state => ({
+    getTask:(id)=>getTaskById(id)(state),
+    title:"",
+    description:""
+});
+
+const mapDispatchToProps = dispatch => ({
+    post:(title, description)=>dispatch(postTask({title, description})),
+    put:(id,title,description)=>dispatch(changeTaskAction(+id,{title, description}))
+});
+
+export default connect(mapStateToProps,mapDispatchToProps)(CrudComponent);

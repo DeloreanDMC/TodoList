@@ -1,14 +1,15 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import {connect } from 'react-redux';
+
 import AuthForm from '../../Components/AuthForm/AuthForm';
 import { getLoginInput, getAlert } from '../../../Redux/Selectors/Selectors';
-import { useAuth } from '../../../Redux/Dispatches/Dispatches';
+import { login, setUsername, setPassword } from '../../../Redux/ActionCreators/ActionCreators';
 
 // Форма ввода данных аккаунта
-const InputForm = () => {
-    const {username, password} = useSelector(getLoginInput);
-    const errorMessage = useSelector(getAlert);
-    const {auth, usernameSetter, passwordSetter} = useAuth();
+const InputForm = ({
+    userInfo, errorMessage, 
+    auth, usernameSetter, passwordSetter}) => {
+    const {username, password} = userInfo; 
     const submitHandler = () => auth(username, password);
     
     return (
@@ -36,4 +37,15 @@ const InputForm = () => {
     )
 };
 
-export default InputForm;
+const mapStateToProps = state => ({
+    userInfo: getLoginInput(state),
+    errorMessage: getAlert(state)
+});
+
+const mapDispatchToProps = dispatch => ({
+    auth:(username,password)  => dispatch(login(username,password)),
+    usernameSetter:(username) => dispatch(setUsername(username)),
+    passwordSetter:(password) => dispatch(setPassword(password)),
+});
+
+export default connect(mapStateToProps,mapDispatchToProps)(InputForm);

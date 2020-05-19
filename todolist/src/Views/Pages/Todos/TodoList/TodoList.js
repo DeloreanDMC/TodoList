@@ -3,10 +3,11 @@ import classes from './TodoList.module.css';
 import Task from './Task/Task';
 import ScrollArea from 'react-scrollbar';
 import NavigationLoader from '../../../Components/Loaders/NavigationLoader/NavigationLoader';
-import { useTodos } from '../../../../Redux/Selectors/hoks';
+import { useTodos } from '../../../../Redux/Selectors/utils';
+
+// Список задач
 const TodoList = () => {
-    const {array, admin, loading, setFilter, checked} = useTodos();
-    if (loading) return <NavigationLoader/>
+    const {array, admin, setFilter, checked} = useTodos();
     const filter = admin ?
         <div className={classes["only-me"]}>
             <input name="me" type="checkbox" checked={checked} className={classes["check"]} onClick={setFilter}/>

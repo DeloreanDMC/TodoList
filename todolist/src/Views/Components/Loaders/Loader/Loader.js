@@ -1,7 +1,11 @@
 import React from 'react';
 import classes from './Loader.module.css';
 
-const Loader = () => {
+const Loader = ({loading, children}) => {
+    if (!loading) {
+        return children;
+    }
+    
     return (
         <div className={classes["center"]}>
             <div className={classes["overlay-loader"]}>

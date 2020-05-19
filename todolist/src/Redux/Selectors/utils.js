@@ -1,30 +1,24 @@
 import {useEffect} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
-import { getName, getLoading, getTodosSelect, getFilter, isAdmin } from './Selectors';
+import { getName, getFilter, isAdmin } from './Selectors';
+import { getProcessedArray } from './memSelectors';
 import { filterMe, getTodosAction } from '../ActionCreators/ActionCreators';
-
-// Переименовать в utils
 
 export function useTodos() {
     const username = useSelector(getName);
     const checked = useSelector(getFilter);
-    const loading = useSelector(getLoading);
     const admin = useSelector(isAdmin);
+    const filter = useSelector(getFilter);
+    const array = useSelector(getProcessedArray(filter,admin,username));
 
-    let {array,filter} = useSelector(getTodosSelect);
 
-    if (filter || !admin) {
-        array = array.filter(el => el.createdBy===username);// create selector
-    }
-    array.sort((a)=>a.description!=="done"?-1:1); // selector
-    
     const dispatch = useDispatch();
     // Проверка - отправлять не отправлять
     // Написать свою мидл вару - прверять ндо вызываться или нет
     // + еще один 
 
-    useEffect(() => {dispatch(getTodosAction());},[]);
+    useEffect(() => {dispatch(getTodosAction());},[dispatch]);
     const setFilter = () => dispatch(filterMe());
     
-    return {array,admin, loading, setFilter,checked};
+    return {array,admin, setFilter,checked};
 }

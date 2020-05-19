@@ -7,19 +7,16 @@ import { getLoading } from '../../Redux/Selectors/Selectors';
 
 // Страница аутентификации
 const Login = () => {
-    const loading = useSelector(getLoading);
-
-    if (loading) {
-        return <Loader/>
-    } 
-    
+    const loading = useSelector(getLoading);  
     return (
-        <div className={classes["wrapper"]}>
-            <div className={classes["login-box"]}>
-                <div className={classes["title"]}>Busy List</div>
-                <InputForm/>
+        <Loader loading={loading}>
+            <div className={classes["wrapper"]}>
+                <div className={classes["login-box"]}>
+                    <div className={classes["title"]}>Busy List</div>
+                    <InputForm/>
+                </div>
             </div>
-        </div>
+        </Loader>
     );
 };
 

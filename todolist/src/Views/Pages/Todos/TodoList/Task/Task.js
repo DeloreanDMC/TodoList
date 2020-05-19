@@ -1,38 +1,36 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import classes from './Task.module.css';
 import Creator from './Creator';
 import Description from './Description';
-import { useDispatch } from 'react-redux';
+import { connect } from 'react-redux';
 import { changeTaskAction, deleteTask } from '../../../../../Redux/ActionCreators/ActionCreators';
-import { NavLink } from 'react-router-dom';
 
-const Task = ({task, admin}) => {
+import Edit from './Edit';
 
+// Опционально добавляет к строке параметр optional
+const optionalEnd = (str,isDone,optional) => {
+    if (isDone) {
+        return str + optional;
+    } 
+    return str;
+};
+
+// Компонент одной задачи
+const Task = ({task, admin, changeTask, deleteById}) => {
+
+    // Параметры для отображения
     const {id, title, description, createdBy} = task;
-    const isdone = description === "done";
-    const like = "like" + (isdone?"-full":"");
-    const taskBox = "task-box" + (isdone?"-done":"");
-    const dispatch = useDispatch();
-
-    // useCallback переписать
-    const doneIt = () => dispatch(changeTaskAction(id,{description:"done", title}));
-    const delet = () => dispatch(deleteTask(id));
-
-    const edit = (
-    <React.Fragment>
-        <div className={classes["edit"]}>
-            {isdone ? null : (
-                <NavLink to={"/todos/edit/"+id} className={classes["edit-image"]}>
-                </NavLink>)}
-        </div>
-        <div className={classes["edit"]}>
-            <div className={classes["delete-image"]} onClick={delet}>
-            </div>
-        </div>
-    </React.Fragment>    
+    const isDone = description === "done";
     
-    );
+    // Названия классов, которые могут измениться
+    const like =  optionalEnd("like",isDone,"-full");
+    const taskBox = optionalEnd("task-box",isDone,"-done");
+    
+    // Действия, которые можно совершить над задачей
+    const doneIt = useCallback(() => changeTask(id,{description:"done", title}),[id,title,changeTask]);
+    const delet =  useCallback(() => deleteById(id),[id,deleteById]);
 
+    // Всплавающее описание задачи, после клика по ней
     const info = <Description description={description}/>
     const [showInfo,setInfo] = useState(false);
     const switchInfo = () => setInfo(!showInfo);
@@ -48,11 +46,16 @@ const Task = ({task, admin}) => {
                 <div className={classes["title"]} onClick={switchInfo}>
                     {title}
                 </div>
-                {edit}
+                <Edit id={id} isDone={isDone} delet={delet}/>
             </div>
                 {showInfo ? info : null}
         </div>
     );
 };
 
-export default Task;
+const mapDispatchToProps = dispatch => ({
+    changeTask:(id,newData)=>dispatch(changeTaskAction(id,newData)),
+    deleteById:(id)=>dispatch(deleteTask(id))
+});
+
+export default connect(null,mapDispatchToProps)(Task);
