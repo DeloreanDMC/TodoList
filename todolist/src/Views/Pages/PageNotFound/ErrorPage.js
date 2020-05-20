@@ -1,14 +1,14 @@
 import React from 'react';
-import classes from './PageNotFound.module.css';
+import classes from './ErrorPage.module.css';
 
 // Отображение - «страница не найдена»
-const PageNotFound = () => {
+const ErrorPage = ({title}) => {
     return (
         <div>
             <div className={classes["sad"]}></div>
-            <div className={classes["title"]}>404 Page Not Found</div>
+            <div className={classes["title"]}>{title}</div>
         </div>
     );
 };
 
-export default PageNotFound;
+export default ErrorPage;

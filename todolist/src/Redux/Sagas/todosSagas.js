@@ -1,9 +1,6 @@
-import { put, call, select } from 'redux-saga/effects';
+import { put, call } from 'redux-saga/effects';
 import { getTodos, postTodo, deleteTodo, putTodo } from '../../HTTPprovider/HTTPprovider';
-
-import { setTodos, showLoader, hideLoader, createTask, setMemTask, setTask } from '../ActionCreators/ActionCreators';
-import sagaErrorsHandler from './sagaErrorsHandler';
-import ErrorDecorator from './ErrorDecorator';
+import { setTodos, showLoader, hideLoader, createTask, setMemTask, setTask, removeTask } from '../ActionCreators/ActionCreators';
 import {sagaCreator} from './sagaCreator';
 
 // Получить список задачик
@@ -30,7 +27,8 @@ export const sagaNewTask = sagaCreator(
 export const sagaDeleteTask = sagaCreator(
     function* ({id}) {
         yield put(showLoader());
-        yield call(deleteTodo, id);   
+        yield call(deleteTodo, id);
+        yield put(removeTask(id));
     }
 );
 

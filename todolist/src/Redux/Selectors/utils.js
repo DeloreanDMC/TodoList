@@ -14,7 +14,7 @@ export function useTodos() {
     const dispatch = useDispatch();
     const setFilter = () => dispatch(filterMe());
     
-    useEffect(() => {dispatch(getTodosAction());},[]);
+    useEffect(() => {dispatch(getTodosAction());},[dispatch]);
 
     return {array,admin, setFilter,checked};
 }

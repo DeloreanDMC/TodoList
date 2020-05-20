@@ -6,7 +6,7 @@ import { Route } from 'react-router-dom';
 import CrudComponent from './CrudComponent/CrudComponent';
 import Page from '../../Components/Page/Page';
 import { useDispatch } from 'react-redux';
-import { setMemTask } from '../../../Redux/ActionCreators/ActionCreators';
+import { setMemTask, setTaskError } from '../../../Redux/ActionCreators/ActionCreators';
 
 const crudComponent = (view) => {
     return ({match}) => <CrudComponent view={view} id={match.params.id}/>;
@@ -14,7 +14,7 @@ const crudComponent = (view) => {
 
 const Todos = () => {
     const dispatch = useDispatch();
-    const clearMem = ()=>dispatch(setMemTask(null));
+    const clearMem = ()=>{dispatch(setMemTask(null)); dispatch(setTaskError(null))};
     return (
         <React.Fragment>
             <Page title={"Todo list"}>

@@ -11,3 +11,4 @@ export const isAdmin =        state => state.user.name === "SUPERUSER";
 export const allUsers =       state => state.app.users;
 export const getTaskError =   state => state.todos.error;
 export const getMemTask =     state => state.todos.memTask;
+export const getGlobalError = state => state.app.error;

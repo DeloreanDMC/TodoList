@@ -3,20 +3,20 @@ import classes from './CrudComponent.module.css';
 import { NavLink } from 'react-router-dom';
 import Button from '../../../Components/Button/Button';
 import { connect } from 'react-redux';
-import { postTask, changeTaskAction } from '../../../../Redux/ActionCreators/ActionCreators';
+import { postTask, changeTaskAction, setTaskError } from '../../../../Redux/ActionCreators/ActionCreators';
 import { getTaskById } from '../../../../Redux/Selectors/memSelectors';
 import { getTaskError, getMemTask } from '../../../../Redux/Selectors/Selectors';
 
-const CrudComponent = ({view,id, getTask, post, put, memTask})=>{
+const CrudComponent = ({view,id, getTask, post, put, memTask, error, closeError})=>{
     
     const task = memTask || getTask(id);
     
-    const [title,setTitle] = useState(task && task.title || "");
-    const [description, setDesc] = useState(task && task.description || "");
+    const [title,setTitle] = useState((task && task.title) || "");
+    const [description, setDesc] = useState((task && task.description) || "");
     
-    const submit  = useCallback(()=>post(title, description),[title,description]);
-    const putTask = useCallback(()=>put(id,title,description),[id, title, description]);
-
+    const submit  = useCallback(()=>post(title, description),[title, description, post]);
+    const putTask = useCallback(()=>put(id,title,description),[id, title, description, put]);
+ 
    
     const action = view==="Create" ? submit : putTask;
 
@@ -57,6 +57,12 @@ const CrudComponent = ({view,id, getTask, post, put, memTask})=>{
                     </div>
                 </div>
             </div>
+            {error
+            ?   <div className={classes["modal-error"]}>
+                    {error}
+                    <div className={classes["close-error"]} onClick={closeError}>Ok</div>
+                </div>
+            :   null}
         </React.Fragment>
     );
 };
@@ -68,6 +74,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
+    closeError:()=>dispatch(setTaskError(null)),
     post:(title, description)=>dispatch(postTask({title, description})),
     put:(id,title,description)=>dispatch(changeTaskAction(+id,{title, description}))
 });

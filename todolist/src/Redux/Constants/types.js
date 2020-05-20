@@ -16,7 +16,7 @@ export const POST_TASK = "TODO/POST_TASK";
 export const DELETE_TASK = "TODO/DELETE_TASK";
 export const TASK_ERROR = "TODO/TASK_ERROR";
 export const SET_MEM_TASK = "TODO/SET_MEM_TASK";
-
+export const REMOVE_TASK = "TODO/REMOVE_TASK";
 
 export const SHOW_LOADER = "APP/SHOW_LOADER";
 export const HIDE_LOADER = "APP/HIDE_LOADER";
@@ -25,6 +25,6 @@ export const HIDE_ALERT  = "APP/HIDE_ALER";
 export const SET_USERNAME = "APP/SET_USERNAME";
 export const SET_PASSWORD = "APP/SET_PASSWORD";
 export const INIT_AUTH = "APP/INIT_AUTH";
-
+export const GLOBAL_ERROR = "APP/GLOBAL_ERROR";
 export const SET_USERS = "SUPER_USER/SET_USERS";
 export const LOAD_USERS = "SUPER_USER/LOAD_USERS";

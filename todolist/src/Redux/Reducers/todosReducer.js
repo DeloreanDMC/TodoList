@@ -1,4 +1,4 @@
-import { SET_TODOS, FILTER_ME,CREATE_TASK, CHANGE_TASK, DELETE_TASK, TASK_ERROR, SET_MEM_TASK } from "../Constants/types";
+import { SET_TODOS, FILTER_ME,CREATE_TASK, CHANGE_TASK, TASK_ERROR, SET_MEM_TASK, REMOVE_TASK } from "../Constants/types";
 
 const initialState = {
     memTask:null,
@@ -25,7 +25,7 @@ export const todosReducer = (state=initialState,action) => {
             ...state,
             array:[...state.array,action.payload]
         };
-        case DELETE_TASK: return {
+        case REMOVE_TASK: return {
             ...state,
             array:state.array.filter(el=>+el.id!==+action.id)
         };

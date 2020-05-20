@@ -1,4 +1,4 @@
-import { SHOW_LOADER,SET_USERS, SET_PASSWORD, INIT_AUTH, HIDE_LOADER, SHOW_ALERT, HIDE_ALERT, SET_USERNAME } from "../Constants/types";
+import { SHOW_LOADER,SET_USERS, SET_PASSWORD, GLOBAL_ERROR, INIT_AUTH, HIDE_LOADER, SHOW_ALERT, HIDE_ALERT, SET_USERNAME } from "../Constants/types";
 
 const initialState = {
     loading: false,
@@ -54,7 +54,10 @@ export const appReducer = (state = initialState,action) => {
             ...state,
             users:action.payload
         };
-
+        case GLOBAL_ERROR: return {
+            ...state,
+            error:action.message
+        }
         default: return state;
     }
 }

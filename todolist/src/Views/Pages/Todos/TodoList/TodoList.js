@@ -2,7 +2,6 @@ import React from 'react';
 import classes from './TodoList.module.css';
 import Task from './Task/Task';
 import ScrollArea from 'react-scrollbar';
-import NavigationLoader from '../../../Components/Loaders/NavigationLoader/NavigationLoader';
 import { useTodos } from '../../../../Redux/Selectors/utils';
 
 // Список задач

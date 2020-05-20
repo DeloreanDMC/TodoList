@@ -10,3 +10,9 @@ export const sagaCreator = sagaErrorWrapper(
     sagaErrorsHandler,
     err => err.response.status >= 500
 );
+
+export const sagaFinalCreator = finall => sagaErrorWrapper(
+    finall,
+    sagaErrorsHandler,
+    err => err.response.status >= 500
+)

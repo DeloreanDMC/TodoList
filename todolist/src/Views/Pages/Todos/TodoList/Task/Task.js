@@ -27,7 +27,7 @@ const Task = ({task, admin, changeTask, deleteById}) => {
     const taskBox = optionalEnd("task-box",isDone,"-done");
     
     // Действия, которые можно совершить над задачей
-    const doneIt = useCallback(() => changeTask(id,{description:"done", title}),[id,title,changeTask]);
+    const doneIt = useCallback(() =>isDone || changeTask(id,{description:"done", title}),[id,title,changeTask,isDone]);
     const delet =  useCallback(() => deleteById(id),[id,deleteById]);
 
     // Всплавающее описание задачи, после клика по ней
@@ -39,10 +39,11 @@ const Task = ({task, admin, changeTask, deleteById}) => {
         <div className={classes["Task"]}>
            {admin ? <Creator name={createdBy}/> : null}  
             <div className={classes[taskBox]}>
-                <div className={classes["execute"]}>
-                    <div className={classes[like]} onClick={doneIt}>
+               
+                    <div className={classes["execute"]}>
+                        <div className={classes[like]} onClick={doneIt}>
+                        </div>
                     </div>
-                </div>
                 <div className={classes["title"]} onClick={switchInfo}>
                     {title}
                 </div>

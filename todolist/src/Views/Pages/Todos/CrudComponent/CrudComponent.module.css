@@ -117,3 +117,38 @@
   
     opacity: 0;
 }
+
+.modal-error {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: "Schoolbell";
+    font-size: 5vh;
+    z-index: 100;
+    width: 30vw;
+    height: 30vh;
+    top: 35vh;
+    left: 35vw;
+    border-radius: 16px;
+    opacity: 0.9;
+    background-color: rgb(218, 129, 184);
+}
+
+.close-error {
+    cursor: pointer;
+    background-color: #19adc3;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 10vh;
+    height: 10vh;
+    border-radius: 16px;
+    transition: all 0.7s;
+}
+
+.close-error:hover {
+    background-color: #0b5864;
+}

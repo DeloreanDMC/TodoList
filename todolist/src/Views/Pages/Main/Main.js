@@ -2,11 +2,11 @@ import React from 'react';
 import classes from './Main.module.css';
 import HomePage from '../HomePage/HomePage';
 import {Route,Switch, Redirect} from 'react-router-dom';
-import PageNotFound from '../PageNotFound/PageNotFound';
 import Todos from '../Todos/Todos';
 import { useSelector } from 'react-redux';
 import { isAdmin } from '../../../Redux/Selectors/Selectors';
 import Users from '../Users/Users';
+import ErrorPage from '../PageNotFound/ErrorPage';
 
 // Отображение текущей страницы
 const Main = () => {
@@ -21,7 +21,7 @@ const Main = () => {
                 
                 {admin ? <Route path="/users" component={Users}/> : null}
                 
-                <Route path="/404" component={PageNotFound}/>
+            <Route path="/404" render={()=><ErrorPage title="404 Page not found"/>}/>
                 <Redirect to="/404"/>
             </Switch>
         </div>
