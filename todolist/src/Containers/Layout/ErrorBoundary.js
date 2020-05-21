@@ -42,12 +42,15 @@ class ErrorBoundary extends React.Component {
     }
     
     render() {
+    
     if (this.state.hasError) {
         return this.showError("Something went wrong.");
     } 
+
     if (this.props.error) {
         return this.showError(this.props.error);
     }
+    
     return this.props.children; 
     }
 };
